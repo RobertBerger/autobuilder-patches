@@ -1,0 +1,28 @@
+From 88bfadef1a46d5f576b0822a13e46eeff93cbe87 Mon Sep 17 00:00:00 2001
+From: Robert Berger <robert.berger@reliableembeddedsystems.com>
+Date: Tue, 10 Jun 2014 08:12:05 +0000
+Subject: [PATCH] md5sums for now
+
+---
+ lib/python2.7/site-packages/autobuilder/buildsteps/MakeImageMD5s.py | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
+
+diff --git a/lib/python2.7/site-packages/autobuilder/buildsteps/MakeImageMD5s.py b/lib/python2.7/site-packages/autobuilder/buildsteps/MakeImageMD5s.py
+index 84839fb..a302066 100644
+--- a/lib/python2.7/site-packages/autobuilder/buildsteps/MakeImageMD5s.py
++++ b/lib/python2.7/site-packages/autobuilder/buildsteps/MakeImageMD5s.py
+@@ -34,8 +34,10 @@ class MakeImageMD5s(ShellCommand):
+         buildername=self.getProperty("buildername")
+         command=""
+         if str(os.environ.get('PUBLISH_BUILDS')) == "True":
+-            command = command + "for x in `find build/tmp/deploy/images -type f`; do "
++            command = command + "if [ -d build/tmp/deploy/images ]; then "
++            command = command + "cd build/tmp/deploy/images; for x in `find . -type f`; do "
+             command = command + "filenm=`basename $x`; md5sum $x >> $filenm.md5sum; done"
++            command = command + ";fi"
+         else:
+             command="echo 'Not publishing build, skipping step'"
+         self.command = command
+-- 
+1.9.1
+
