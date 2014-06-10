@@ -1,0 +1,30 @@
+From 8d413b25c41b5577db9c53f12e72da2d5e91b445 Mon Sep 17 00:00:00 2001
+From: Robert Berger <robert.berger@reliableembeddedsystems.com>
+Date: Tue, 10 Jun 2014 17:22:46 +0000
+Subject: [PATCH] genius/genius
+
+---
+ yocto-autobuilder-setup | 6 ++++--
+ 1 file changed, 4 insertions(+), 2 deletions(-)
+
+diff --git a/yocto-autobuilder-setup b/yocto-autobuilder-setup
+index 69c1e83..7328230 100644
+--- a/yocto-autobuilder-setup
++++ b/yocto-autobuilder-setup
+@@ -105,9 +105,11 @@ if [ -n "${config_check:+x}" ]; then
+     echo " You've not setup the autobuilder before. Generating a username/password"
+     echo " combo for you."
+     echo ""
+-    username=`cat /dev/urandom|tr -dc "a-zA-Z0-9"|fold -w 9|head -n1`
++    #username=`cat /dev/urandom|tr -dc "a-zA-Z0-9"|fold -w 9|head -n1`
++    username="genius"
+     echo " Username = $username " 
+-    password=`cat /dev/urandom|tr -dc "a-zA-Z0-9"|fold -w 9|head -n1`
++    #password=`cat /dev/urandom|tr -dc "a-zA-Z0-9"|fold -w 9|head -n1`
++    password="genius"
+     echo " Password = $password " 
+     echo ""
+     echo " Modifying the following files with this username/password:"
+-- 
+1.9.1
+
