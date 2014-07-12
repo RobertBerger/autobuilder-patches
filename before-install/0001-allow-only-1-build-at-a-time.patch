@@ -1,16 +1,17 @@
-From 6f7f1477dfe1b0cc4f6f5cf7b0e6661f04782643 Mon Sep 17 00:00:00 2001
-From: Robert Berger <robert.berger@reliableembeddedsystems.com>
-Date: Mon, 9 Jun 2014 18:22:16 +0000
+From c04950456042b8b4b347abbc732d1ea6354e97b7 Mon Sep 17 00:00:00 2001
+From: genius user <genius@ReliableEmbeddedSystems.com>
+Date: Sat, 12 Jul 2014 05:54:43 +0000
 Subject: [PATCH] allow only 1 build at a time
 
+Signed-off-by: genius user <genius@ReliableEmbeddedSystems.com>
 ---
- yocto-master/master.cfg | 2 +-
+ yocto-controller/controller.cfg | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/yocto-master/master.cfg b/yocto-master/master.cfg
+diff --git a/yocto-controller/controller.cfg b/yocto-controller/controller.cfg
 index 7f41685..c842766 100755
---- a/yocto-master/master.cfg
-+++ b/yocto-master/master.cfg
+--- a/yocto-controller/controller.cfg
++++ b/yocto-controller/controller.cfg
 @@ -1,6 +1,6 @@
  c = BuildmasterConfig = {}
  from buildbot.buildslave import BuildSlave
