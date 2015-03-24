@@ -1,25 +1,26 @@
-From c04950456042b8b4b347abbc732d1ea6354e97b7 Mon Sep 17 00:00:00 2001
+From 399d38782d39334b657893c4e157d1bbc305e084 Mon Sep 17 00:00:00 2001
 From: genius user <genius@ReliableEmbeddedSystems.com>
-Date: Sat, 12 Jul 2014 05:54:43 +0000
+Date: Tue, 24 Mar 2015 22:17:09 +0000
 Subject: [PATCH] allow only 1 build at a time
 
 Signed-off-by: genius user <genius@ReliableEmbeddedSystems.com>
 ---
- yocto-controller/controller.cfg | 2 +-
+ yocto-controller/controller.cfg.example | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/yocto-controller/controller.cfg b/yocto-controller/controller.cfg
-index 7f41685..c842766 100755
---- a/yocto-controller/controller.cfg
-+++ b/yocto-controller/controller.cfg
-@@ -1,6 +1,6 @@
- c = BuildmasterConfig = {}
- from buildbot.buildslave import BuildSlave
--c['slaves'] = [BuildSlave("builder1", "<PASS>", max_builds=2)]
-+c['slaves'] = [BuildSlave("builder1", "<PASS>", max_builds=1)]
- c['slavePortnum'] = 9989
+diff --git a/yocto-controller/controller.cfg.example b/yocto-controller/controller.cfg.example
+index e5d452f..075bac6 100644
+--- a/yocto-controller/controller.cfg.example
++++ b/yocto-controller/controller.cfg.example
+@@ -47,7 +47,7 @@ c['buildbotURL'] = "http://localhost:8010"
+ #                     BuildWorker("builder2", "<PASS>", max_builds=3),]
  
- c['status'] = []
+ from buildbot.buildslave import BuildSlave as BuildWorker
+-c['workers'] = [BuildWorker("example-worker", "<PASS>", max_builds=3),]
++c['workers'] = [BuildWorker("example-worker", "<PASS>", max_builds=1),]
+ 
+ # 'workerPortnum' defines the TCP port to listen on for connections from 
+ # workers. This must match the value configured into the buildworkers 
 -- 
 1.9.1
 
