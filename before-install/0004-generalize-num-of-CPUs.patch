@@ -1,27 +1,32 @@
-From 72e290fc44cbedd9fddb671ac708a10ac96e5992 Mon Sep 17 00:00:00 2001
+From a52c49c7afb8f0b4b622da985ac85c69959c0f92 Mon Sep 17 00:00:00 2001
 From: genius user <genius@ReliableEmbeddedSystems.com>
-Date: Sun, 21 Jun 2015 22:28:34 +0000
-Subject: [PATCH 3/3] generalize num of CPUs
+Date: Mon, 22 Jun 2015 17:35:40 +0000
+Subject: [PATCH] generalize-num-of-CPUs
 
 Signed-off-by: genius user <genius@ReliableEmbeddedSystems.com>
 ---
- config/autobuilder.conf.example | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ config/autobuilder.conf.example | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
 
 diff --git a/config/autobuilder.conf.example b/config/autobuilder.conf.example
-index 0c981ee..960c6c2 100644
+index 0c981ee..2c39373 100644
 --- a/config/autobuilder.conf.example
 +++ b/config/autobuilder.conf.example
-@@ -51,8 +51,8 @@ SSTATE_DIR = "/tmp/yocto-autobuilder/sstate"
- #TMP_DIR = "/tmp/yocto-autobuilder/tmp"
+@@ -48,11 +48,11 @@ X8664TC_PUBLISH_DIR = "toolchain/x86_64"
+ [BuildSettings]
+ DL_DIR = "/tmp/yocto-autobuilder/downloads"
+ SSTATE_DIR = "/tmp/yocto-autobuilder/sstate"
+-#TMP_DIR = "/tmp/yocto-autobuilder/tmp"
++TMP_DIR = "/tmp/yocto-autobuilder/tmp"
  IMAGE_FSTYPES = " tar.gz"
  PERSISTDB_DIR = "/tmp/yocto-autobuilder/persistdb"
 -BB_NUMBER_THREADS = "16"
 -PARALLEL_MAKE = "16"
-+BB_NUMBER_THREADS = "${@oe.utils.cpu_count()}"
-+PARALLEL_MAKE = "-j ${@oe.utils.cpu_count()}"
++BB_NUMBER_THREADS = "${@bb.utils.cpu_count()}"
++PARALLEL_MAKE = "${@bb.utils.cpu_count()}"
  RESOLVE_TRIGGERED_HEAD = True
  DEVKERNEL_MUT_REPO = "{'git://git.yoctoproject.org/poky-contrib':['stage/master_under_test', 'sgw/mut']}"
  DEVKERNEL = "linux-yocto-dev"
 -- 
 1.9.1
+
