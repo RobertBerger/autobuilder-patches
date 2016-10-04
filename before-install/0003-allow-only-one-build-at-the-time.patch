@@ -1,0 +1,26 @@
+From fcda40e2dbd861bb37610918a3dedf56b8623094 Mon Sep 17 00:00:00 2001
+From: genius user <genius@ReliableEmbeddedSystems.com>
+Date: Tue, 4 Oct 2016 18:09:48 +0000
+Subject: [PATCH 3/3] allow only one build at the time
+
+Signed-off-by: genius user <genius@ReliableEmbeddedSystems.com>
+---
+ yocto-controller/controller.cfg.example | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/yocto-controller/controller.cfg.example b/yocto-controller/controller.cfg.example
+index e4a7a07..ac6c292 100644
+--- a/yocto-controller/controller.cfg.example
++++ b/yocto-controller/controller.cfg.example
+@@ -46,7 +46,7 @@ c['buildbotURL'] = "http://localhost:8010"
+ #                     BuildWorker("builder2", "<PASS>", max_builds=3),]
+ 
+ from buildbot.buildslave import BuildSlave as BuildWorker
+-c['workers'] = [BuildWorker("example-worker", "<PASS>", max_builds=3),]
++c['workers'] = [BuildWorker("example-worker", "<PASS>", max_builds=1),]
+ 
+ # 'workerPortnum' defines the TCP port to listen on for connections from 
+ # workers. This must match the value configured into the buildworkers 
+-- 
+1.9.1
+

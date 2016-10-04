@@ -1,0 +1,26 @@
+From 827f070f6bd03f11e8032572276ffb627e205948 Mon Sep 17 00:00:00 2001
+From: genius user <genius@ReliableEmbeddedSystems.com>
+Date: Tue, 4 Oct 2016 18:08:42 +0000
+Subject: [PATCH 1/3] genius/genius part1
+
+Signed-off-by: genius user <genius@ReliableEmbeddedSystems.com>
+---
+ bin/worker-init | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/bin/worker-init b/bin/worker-init
+index 7c6f827..c553a7b 100755
+--- a/bin/worker-init
++++ b/bin/worker-init
+@@ -34,6 +34,6 @@ su autobuilder -c "yes 'yes' | git clone git://git.yoctoproject.org/yocto-autobu
+ cd yocto-autobuilder
+ su autobuilder -c '. ./yocto-autobuilder-setup'
+ su autobuilder -c "sed -i 's/example-worker/worker'$WORKER_NUM'/' yocto-worker/buildbot.tac"
+-su autobuilder -c 'sed -i "s/passwd =.*/passwd = '"'"'<PASS>'"'"'/" yocto-worker/buildbot.tac'
+-su autobuilder -c 'sed -i "s/buildmaster_host =.*/buildmaster_host = '"'"'<HOST_ADDR>'"'"'/" yocto-worker/buildbot.tac'
++su autobuilder -c 'sed -i "s/passwd =.*/passwd = '"'"'genius'"'"'/" yocto-worker/buildbot.tac'
++su autobuilder -c 'sed -i "s/buildmaster_host =.*/buildmaster_host = '"'"'172.17.0.3 '"'"'/" yocto-worker/buildbot.tac'
+ su autobuilder -c '. ./yocto-autobuilder-setup; ./yocto-start-autobuilder worker &'
+-- 
+1.9.1
+

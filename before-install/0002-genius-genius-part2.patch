@@ -1,0 +1,27 @@
+From 85356b7083efe0294a1a829cb84f2011148b3e95 Mon Sep 17 00:00:00 2001
+From: genius user <genius@ReliableEmbeddedSystems.com>
+Date: Tue, 4 Oct 2016 18:09:19 +0000
+Subject: [PATCH 2/3] genius/genius part2
+
+Signed-off-by: genius user <genius@ReliableEmbeddedSystems.com>
+---
+ yocto-autobuilder-setup | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+diff --git a/yocto-autobuilder-setup b/yocto-autobuilder-setup
+index d0082ad..eed9a46 100644
+--- a/yocto-autobuilder-setup
++++ b/yocto-autobuilder-setup
+@@ -159,7 +159,8 @@ if [ -n "${config_check:+x}" ]; then
+ 
+     if [  ! -f  $htpath ]; then
+         touch $htpath
+-        upassword=`cat /dev/urandom|tr -dc "a-zA-Z0-9"|fold -w 8|head -n1`
++        #upassword=`cat /dev/urandom|tr -dc "a-zA-Z0-9"|fold -w 8|head -n1`
++        upassword="genius"
+         echo " Generating an .htpasswd file using your current username and $upassword at ${PWD}/.htpasswd"
+         ./bin/htpasswd -b $htpath $USER $upassword
+     fi
+-- 
+1.9.1
+
