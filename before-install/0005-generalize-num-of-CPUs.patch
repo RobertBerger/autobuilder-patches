@@ -1,0 +1,28 @@
+From 1d84ff281172db695e056bb66c0fe7131b917d57 Mon Sep 17 00:00:00 2001
+From: genius user <genius@ReliableEmbeddedSystems.com>
+Date: Mon, 10 Oct 2016 18:24:22 +0000
+Subject: [PATCH] generalize-num-of-CPUs
+
+Signed-off-by: genius user <genius@ReliableEmbeddedSystems.com>
+---
+ config/autobuilder.conf.example | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/config/autobuilder.conf.example b/config/autobuilder.conf.example
+index 96bc4c6..5e5080e 100644
+--- a/config/autobuilder.conf.example
++++ b/config/autobuilder.conf.example
+@@ -54,8 +54,8 @@ SSTATE_DIR = "/tmp/yocto-autobuilder/sstate"
+ #TMP_DIR = "/tmp/yocto-autobuilder/tmp"
+ IMAGE_FSTYPES = " tar.gz"
+ PERSISTDB_DIR = "/tmp/yocto-autobuilder/persistdb"
+-BB_NUMBER_THREADS = "16"
+-PARALLEL_MAKE = "16"
++BB_NUMBER_THREADS = "${@bb.utils.cpu_count()}"
++PARALLEL_MAKE = "${@bb.utils.cpu_count()}"
+ RESOLVE_TRIGGERED_HEAD = True
+ DEVKERNEL_MUT_REPO = "{'git://git.yoctoproject.org/poky-contrib':['stage/master_under_test', 'sgw/mut']}"
+ DEVKERNEL = "linux-yocto-dev"
+-- 
+2.7.4
+
