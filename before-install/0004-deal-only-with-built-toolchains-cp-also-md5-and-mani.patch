@@ -1,39 +1,36 @@
-From 3378c7a3525d3a5121e8057a67b7d7fd6d6e4b53 Mon Sep 17 00:00:00 2001
-From: genius user <genius@ReliableEmbeddedSystems.com>
-Date: Sun, 9 Oct 2016 13:11:55 +0000
-Subject: [PATCH] deal only with built toolchains, cp also md5 and manifests
+From 8f28afbfc21dc84f076b0cc620e578f9607d1465 Mon Sep 17 00:00:00 2001
+From: Robert Berger <robert.berger@ReliableEmbeddedSystems.com> 
+Date: Mon, 10 Oct 2016 06:26:06 +0000
+Subject: [yocto-autobuilder][PATCH] PublishArtifacts.py: deal only with built toolchains, cp also
+ md5 and manifests
 
-Signed-off-by: genius user <genius@ReliableEmbeddedSystems.com>
+Signed-off-by: Robert Berger <robert.berger@ReliableEmbeddedSystems.com>
 ---
- .../autobuilder/buildsteps/PublishArtifacts.py       | 20 ++++++++++++--------
- 1 file changed, 12 insertions(+), 8 deletions(-)
+ .../autobuilder/buildsteps/PublishArtifacts.py             | 14 ++++++++------
+ 1 file changed, 8 insertions(+), 6 deletions(-)
 
 diff --git a/lib/python2.7/site-packages/autobuilder/buildsteps/PublishArtifacts.py b/lib/python2.7/site-packages/autobuilder/buildsteps/PublishArtifacts.py
-index 633600c..9c80ec4 100644
+index 633600c..46d7b40 100644
 --- a/lib/python2.7/site-packages/autobuilder/buildsteps/PublishArtifacts.py
 +++ b/lib/python2.7/site-packages/autobuilder/buildsteps/PublishArtifacts.py
-@@ -154,14 +154,18 @@ class PublishArtifacts(ShellCommand):
+@@ -154,14 +154,16 @@ class PublishArtifacts(ShellCommand):
                  elif artifact == "toolchain":
                      artifact_name, deploy_image_dir = self.getDeployNames(artifact, buildername)
                      command=command+self.generateMD5cmd(artifact, deploy_image_dir)
 -                    command=command+"mkdir -p " + os.path.join(DEST, X86TC_PUBLISH_DIR) + ";"
--                    command=command+"cp -R --no-dereference --preserve=links " + \
++                    command=command+"if [ -e " + os.path.join(deploy_image_dir, "poky-*i686-core-image*.sh ") + " ]; then " + \
++                                    "mkdir -p " + os.path.join(DEST, X86TC_PUBLISH_DIR) + "; "
+                     command=command+"cp -R --no-dereference --preserve=links " + \
 -                                    os.path.join(deploy_image_dir, "poky-*i686-core-image*.sh ") + \
 -                                    os.path.join(DEST, X86TC_PUBLISH_DIR) + pipeline + ";"
 -                    command=command+"mkdir -p " + os.path.join(DEST, X8664TC_PUBLISH_DIR) + ";"
--                    command=command+"cp -R --no-dereference --preserve=links " + \
--                                    os.path.join(deploy_image_dir, "poky-*x86_64-core-image*.sh ") + \
--                                    os.path.join(DEST, X8664TC_PUBLISH_DIR) + pipeline + ";"
-+                    command=command+"if [ -e " + os.path.join(deploy_image_dir, "poky-*i686-core-image*.sh ") + " ]; then " + \
-+                                    "mkdir -p " + os.path.join(DEST, X86TC_PUBLISH_DIR) + "; fi;"
-+                    command=command+"if [ -e " + os.path.join(deploy_image_dir, "poky-*i686-core-image*.sh ") + " ]; then " + \
-+                                    "cp -R --no-dereference --preserve=links " + \
 +                                    os.path.join(deploy_image_dir, "poky-*i686-core-image* ") + \
 +                                    os.path.join(DEST, X86TC_PUBLISH_DIR) + pipeline + "; fi;"
 +                    command=command+"if [ -e " + os.path.join(deploy_image_dir, "poky-*x86_64-core-image*.sh ") + " ]; then " + \
-+                                    "mkdir -p " + os.path.join(DEST, X8664TC_PUBLISH_DIR) + "; fi;"
-+                    command=command+"if [ -e " + os.path.join(deploy_image_dir, "poky-*x86_64-core-image*.sh ") + " ]; then " + \
-+                                    "cp -R --no-dereference --preserve=links " + \
++                                    "mkdir -p " + os.path.join(DEST, X8664TC_PUBLISH_DIR) + "; "
+                     command=command+"cp -R --no-dereference --preserve=links " + \
+-                                    os.path.join(deploy_image_dir, "poky-*x86_64-core-image*.sh ") + \
+-                                    os.path.join(DEST, X8664TC_PUBLISH_DIR) + pipeline + ";"
 +                                    os.path.join(deploy_image_dir, "poky-*x86_64-core-image* ") + \
 +                                    os.path.join(DEST, X8664TC_PUBLISH_DIR) + pipeline + "; fi;"
                  elif artifact == "uninative":
